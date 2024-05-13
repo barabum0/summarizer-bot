@@ -1,6 +1,27 @@
 version: 'v1'
 
 services:
-  python-app:
-    image: ghcr.io/barabum0/python-template:latest
+  summarizer-bot:
+    image: ghcr.io/barabum0/summarizer-bot:latest
+    volumes:
+      - "./logs/:/usr/src/app/logs/"
     restart: unless-stopped
+    environment:
+      MONGO__URL: mongodb://root:mongopassword123@mongo:27017/
+      MONGO__DB_NAME: SummarizerBotDatabase
+
+      # replace with your data
+      TELEGRAM__BOT_TOKEN: <your token from @BotFather here>
+      TELEGRAM__WHITELISTED_CHAT_IDS: [0000000, 11111111]
+      OPENAI__API_KEY: sk-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongopassword123
+    expose:
+      - "27017:27017"
+    volumes:
+      - "./mongo:/data/db"
