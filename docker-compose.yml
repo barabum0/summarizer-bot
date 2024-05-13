@@ -12,7 +12,7 @@ services:
 
       # replace with your data
       TELEGRAM__BOT_TOKEN: <your token from @BotFather here>
-      TELEGRAM__WHITELISTED_CHAT_IDS: [0000000, 11111111]
+      TELEGRAM__WHITELISTED_CHAT_IDS: "[0000000, 11111111]"
       OPENAI__API_KEY: sk-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
   mongo:
